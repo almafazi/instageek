@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLikeTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateLikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('like', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->unsignedInteger('post_id');
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->string('photo');
+            $table->text('caption');
+            $table->string('location');
+            $table->unsignedInteger('like_count')->default(0);
+            $table->unsignedInteger('comment_count')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateLikeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('like');
+        Schema::dropIfExists('posts');
     }
 }

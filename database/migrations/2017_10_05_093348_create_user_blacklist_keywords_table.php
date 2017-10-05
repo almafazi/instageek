@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportTable extends Migration
+class CreateUserBlacklistKeywordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateReportTable extends Migration
      */
     public function up()
     {
-        Schema::create('report', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('post_id');
-            $table->integer('user_id');
-            $table->text('reason');
-            $table->enum('status', ['pending', 'approved','rejected']);
+        Schema::create('user_blacklist_keywords', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->text('keywords');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateReportTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('report');
+        Schema::dropIfExists('user_blacklist_keywords');
     }
 }

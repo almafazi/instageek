@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHashtagTable extends Migration
+class CreatePostTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateHashtagTable extends Migration
      */
     public function up()
     {
-        Schema::create('hashtag', function (Blueprint $table) {
-            $table->string('hashtag')->primary();
-            $table->unsignedInteger('count')->default(0);
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->unsignedInteger('post_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+
+            $table->primary(['post_id', 'user_id']);
         });
     }
 
@@ -27,6 +29,6 @@ class CreateHashtagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hashtag');
+        Schema::dropIfExists('post_tag');
     }
 }
