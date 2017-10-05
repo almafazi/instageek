@@ -14,19 +14,19 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->string('username');
             $table->string('email');
-            $table->string('password');
             $table->string('name');
             $table->text('bio');
             $table->string('website');
             $table->string('phone');
             $table->enum('gender', ['male', 'female']);
             $table->string('profile_picture');
-            $table->integer('post_count');
-            $table->integer('follower_count');
-            $table->integer('following_count');
+            $table->unsignedInteger('post_count');
+            $table->unsignedInteger('follower_count');
+            $table->unsignedInteger('following_count');
+            $table->string('password');
             $table->timestamps();
         });
     }

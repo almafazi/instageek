@@ -14,8 +14,8 @@ class CreateHashtagTable extends Migration
     public function up()
     {
         Schema::create('hashtag', function (Blueprint $table) {
-            $table->string('hashtag');
-            $table->integer('count');
+            $table->string('hashtag')->primary();
+            $table->unsignedInteger('count')->default(0);
             $table->timestamps();
         });
     }
